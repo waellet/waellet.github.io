@@ -1,18 +1,186 @@
 @import url('https://fonts.googleapis.com/css?family=Pacifico');
+html {
+    position: relative;
+    min-height: 100%;
+}
+a {
+    color: black;
+    text-decoration: underline;
+}
+a:hover {
+    color: black;
+    text-decoration: underline;
+}
 body {
-    background: #ff6b81;
-    font-family: 'Pacifico', cursive;
+    background: #FF8FAA;
+    margin-bottom: 60px; /* Margin bottom by footer height */
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px; /* Set the fixed height of the footer here */
+    line-height: 60px; /* Vertically center the text there */
+    background-color: #D9E38F;
+    border-bottom: 5em #90B73F;
 }
 
 h1 {
+    font-family: 'Pacifico', cursive;
     font-size: 4em;
     margin-top: 0;
     margin-bottom: 0;
 }
 
 div.page {
-    display: flex;
-    flex-direction: column;
+    font-family: 'Pacifico', cursive;
+    width: 100vw;
     justify-content: center;
     text-align: center;
+}
+.social {
+    width: 100vw;
+}
+
+.bd-footer {
+    text-align: center;
+    background-color: #f7f7f7;
+}
+
+.bd-footer a {
+    font-weight: 600;
+    color: gray;
+}
+.bd-footer a:hover, .bd-footer a:focus {
+    color: red;
+}
+.bd-footer p {
+    margin-bottom: 0;
+}
+
+.bd-footer-links {
+    padding-left: 0;
+    margin-bottom: 1rem;
+}
+.bd-footer-links li {
+    display: inline-block;
+}
+.bd-footer-links li + li {
+    margin-left: 1rem;
+}
+
+.watermelon {
+    position: absolute;
+	height: 100vh;
+	width: 100vw;
+}
+
+.watermelon div, i {
+	position: absolute;
+}
+
+i {
+	border-top: 0.3em solid #626262;
+	border-bottom: 0.3em solid #626262;
+	border-left: 0.15em solid #626262;
+	border-right: 0.15em solid #626262;
+	border-radius: 0.15em / 0.3em;
+}
+/* 
+.watermelon div:first-of-type {
+		border: 5.9em solid #90B73F;
+		border-top: 5.9em solid transparent;
+	}
+
+.watermelon div:nth-of-type(2) {
+		border: 5.7em solid #D9E38F;
+		border-top: 5.7em solid transparent;
+	}
+
+.watermelon div:nth-of-type(3){
+		border: 5.2em solid #FDFAF7;
+		border-top: 5.2em solid transparent;
+    }
+    
+*/
+
+.seeds {
+    position: absolute;
+    left: 50%;
+    /* border: 5em solid #FF8FAA; */
+} 
+
+.watermelon i {
+    font-size: 2em;
+}
+
+.watermelon i:first-of-type {
+    top: 6rem;
+    left: 3rem;
+    -webkit-transform: rotate(-12deg);
+            transform: rotate(-12deg);
+}
+
+.watermelon div:last-of-type i:nth-of-type(2) {
+    top: 7rem;
+    left: -3rem;
+    -webkit-transform: rotate(20deg);
+            transform: rotate(20deg);
+}
+
+.watermelon div:last-of-type i:nth-of-type(3) {
+    top: 3rem;
+    left: 20rem;
+    -webkit-transform: rotate(100deg);
+            transform: rotate(100deg);
+}
+
+.watermelon div:last-of-type i:nth-of-type(4) {
+    left: 13rem;
+    top: -5rem;
+    -webkit-transform: rotate(80deg);
+            transform: rotate(80deg);
+}
+
+.watermelon div:last-of-type i:nth-of-type(5) {
+    left: -15rem;
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+}
+
+.watermelon div:last-of-type i:nth-of-type(6), .watermelon div:last-of-type i:nth-of-type(7) {
+    left: -3rem;
+}
+
+.watermelon div:last-of-type i:nth-of-type(6) {
+    top: 7rem;
+    left: -20rem;
+    -webkit-transform: rotate(65deg);
+            transform: rotate(65deg);
+}
+
+.watermelon div:last-of-type i:nth-of-type(7) {
+    top: -2.5rem;
+    left: -8rem;
+    -webkit-transform: rotate(102deg);
+            transform: rotate(102deg);
+}
+
+.watermelon div:last-of-type i:nth-of-type(8) {
+    left: 3.5rem;
+    top: -2rem;
+    -webkit-transform: rotate(75deg);
+            transform: rotate(75deg);
+}
+
+.watermelon div:last-of-type i:nth-of-type(9) {
+    left: -30rem;
+    top: -3rem;
+    -webkit-transform: rotate(115deg);
+            transform: rotate(115deg);
+}
+
+.watermelon div:last-of-type i:last-of-type {
+    top: 15.5rem;
+    left: -0.5rem;
 }
