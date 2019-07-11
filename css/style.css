@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Pacifico');
+/* @import url('https://fonts.googleapis.com/css?family=Pacifico'); */
 
 html {
     position: relative;
@@ -7,6 +7,14 @@ html {
 a, a:hover {
     color: #DCF9F6;
     text-decoration: underline;
+}
+
+table {
+    color: #DCF9F6 !important;
+}
+
+td {
+    text-align: left;
 }
 
 body {
@@ -24,14 +32,14 @@ body {
 }
 
 h1 {
-    font-family: 'Pacifico', cursive;
+    font-family: 'Ubuntu', monospace;
     font-size: 4em;
     margin-top: 0;
     margin-bottom: 0;
 }
 
 div.page {
-    font-family: 'Pacifico', cursive;
+    font-family: 'Ubuntu', mono;
     width: 100vw;
     justify-content: center;
     text-align: center;
