@@ -230,3 +230,67 @@ header a, a:visited {
   -webkit-animation:move-clouds-back 200s linear infinite;
   animation:move-clouds-back 200s linear infinite;
 } */
+
+.ul-list {
+    margin-top: 25%;
+}
+
+ul {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    /* position: absolute; */
+    top: 50%;
+  }
+  
+  li {
+    display: inline-block;
+    margin: 10px;
+  }
+
+  .waellet-icon {
+    height: 100% !important;
+  }
+  
+  .download {
+    display: block;
+    width: 200px;
+    height: 75px;
+    background: black;
+    float: left;
+    border-radius: 5px;
+    position: relative;
+    color: #fff;
+    cursor: pointer;
+    border: 1px solid #fff;
+  }
+  
+  .download > .fab {
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+  }
+  
+  .df,
+  .dfn {
+    position: absolute;
+    left: 70px;
+  }
+  
+  .df {
+    top: 20px;
+    font-size: .8em;
+  }
+  
+  .dfn {
+    top: 33px;
+    font-size: 1.08em;
+  }
+  
+  .download:hover {
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
+  }
