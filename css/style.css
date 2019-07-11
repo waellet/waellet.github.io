@@ -9,6 +9,19 @@ a, a:hover {
     text-decoration: underline;
 }
 
+.ae {
+    position: absolute;
+    display: block;
+    text-indent: -9999px;
+    left: 25vw;
+    width: 50vw;
+    height: 25vw;
+    background: url(/images/aeternity.svg);
+    background-size: 50vw 25vw;
+    background-repeat: no-repeat;
+    opacity: 0.3;
+}
+
 table {
     color: #DCF9F6 !important;
 }
