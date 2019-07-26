@@ -36,18 +36,18 @@ var LedgerBridge = function () {
             var _this = this;
 
             window.addEventListener('message', async function (e) {
-                if (e && e.data && e.data.target === 'LDEGER-IFRAME') {
+                if (e && e.data && e.data.target === 'LEDGER-IFRAME') {
                     var _e$data = e.data,
                         action = _e$data.action,
                         params = _e$data.params;
 
                     var replyAction = action + '-reply';
                     switch (action) {
-                        case 'ledger-unlock':
-                            _this.unlock(replyAction, params.hdPath);
+                        case 'ledger-get-address':
+                            _this.getAddress(replyAction, params.accountIdx);
                             break;
                         case 'ledger-sign-transaction':
-                            _this.signTransaction(replyAction, params.hdPath, params.tx, params.to);
+                            _this.signTransaction(replyAction, params.accountIdx, params.tx, params.networkId);
                             break;
                     }
                 }
@@ -73,21 +73,19 @@ var LedgerBridge = function () {
             this.app = null;
         }
     }, {
-        key: 'unlock',
-        value: async function unlock(replyAction, ledgerNextIdx) {
+        key: 'getAddress',
+        value: async function getAddress(replyAction, accountIdx) {
             try {
                 await this.makeApp();
-                var res = await this.app.getAddress(ledgerNextIdx, true);
-
-                console.log(res);
-
+                var res = await this.app.getAddress(accountIdx, true);
                 this.sendMessageToExtension({
                     action: replyAction,
                     success: true,
                     payload: res
                 });
-            } catch (e) {
+            } catch (err) {
 
+                var e = this.ledgerErrToMessage(err);
                 this.sendMessageToExtension({
                     action: replyAction,
                     success: false,
@@ -96,6 +94,73 @@ var LedgerBridge = function () {
             } finally {
                 this.clean();
             }
+        }
+    }, {
+        key: 'signTransaction',
+        value: async function signTransaction(replyAction, accountIdx, tx, networkId) {
+            try {
+                await this.makeApp();
+                var res = await this.app.signTransaction(accountIdx, tx, networkId);
+                this.sendMessageToExtension({
+                    action: replyAction,
+                    success: true,
+                    payload: res
+                });
+            } catch (err) {
+                var e = this.ledgerErrToMessage(err);
+                this.sendMessageToExtension({
+                    action: replyAction,
+                    success: false,
+                    payload: { error: e.toString() }
+                });
+            } finally {
+                this.cleanUp();
+            }
+        }
+    }, {
+        key: 'ledgerErrToMessage',
+        value: function ledgerErrToMessage(err) {
+            var isU2FError = function isU2FError(err) {
+                return !!err && !!err.metaData;
+            };
+            var isStringError = function isStringError(err) {
+                return typeof err === 'string';
+            };
+            var isErrorWithId = function isErrorWithId(err) {
+                return err.hasOwnProperty('id') && err.hasOwnProperty('message');
+            };
+
+            if (isU2FError(err)) {
+                // Timeout
+                if (err.metaData.code === 5) {
+                    return 'LEDGER_TIMEOUT';
+                }
+
+                return err.metaData.type;
+            }
+
+            if (isStringError(err)) {
+                // Wrong app logged into
+                if (err.includes('6804')) {
+                    return 'LEDGER_WRONG_APP';
+                }
+                // Ledger locked
+                if (err.includes('6801')) {
+                    return 'LEDGER_LOCKED';
+                }
+
+                return err;
+            }
+
+            if (isErrorWithId(err)) {
+                // Browser doesn't support U2F
+                if (err.message.includes('U2F not supported')) {
+                    return 'U2F_NOT_SUPPORTED';
+                }
+            }
+
+            // Other
+            return err.toString();
         }
     }]);
 
