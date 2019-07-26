@@ -6,10 +6,10 @@ const browserSync = require('browser-sync').create();
 
 const paths = {
   scripts: {
-    source: './main.js',
-    destination: './',
+    source: './js/main.js',
+    destination: './js/',
     filename: 'bundle.js',
-    watch: ['./main.js', 'ledger-bridge.js']
+    watch: ['./js/main.js', './js/ledger-bridge.js']
   }
 }
 

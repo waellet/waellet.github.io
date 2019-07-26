@@ -89,7 +89,7 @@ export default class LedgerBridge {
             })
 
         } finally {
-            this.cleanUp()
+            this.clean()
         }
     }
 

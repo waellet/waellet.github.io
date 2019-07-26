@@ -114,7 +114,7 @@ var LedgerBridge = function () {
                     payload: { error: e.toString() }
                 });
             } finally {
-                this.cleanUp();
+                this.clean();
             }
         }
     }, {
